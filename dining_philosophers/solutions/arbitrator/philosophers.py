@@ -28,8 +28,3 @@ class ArbitratorPhilosopher(Philosopher):
 
         self.forks[0].release()
         self.forks[1].release()
-
-        
-
-
-    
