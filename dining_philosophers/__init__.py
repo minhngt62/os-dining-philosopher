@@ -1,1 +1,1 @@
-from .solutions import ArbitratorTable
+from .solutions import ArbitratorTable, HierachyTable
