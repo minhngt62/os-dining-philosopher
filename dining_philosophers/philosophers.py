@@ -1,4 +1,4 @@
-import threading
+import multiprocessing
 import logging
 from random import uniform
 import time
@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 from ._states import PhilosopherState
 from .forks import Fork
 
-class Philosopher(threading.Thread):
+class Philosopher(multiprocessing.Process):
     EAT_TIMES_UNTIL_FULL = 3
 
     def __init__(
@@ -19,7 +19,7 @@ class Philosopher(threading.Thread):
         id_: int,
         forks: Tuple[Fork, Fork],
         ):
-        threading.Thread.__init__(self)
+        multiprocessing.Process.__init__(self)
         
         self.id_ = id_
         self.state = PhilosopherState.THINKING

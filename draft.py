@@ -7,7 +7,6 @@ from multiprocessing import Manager
 def task(number, shared_lock):
     # acquire the shared lock
     with shared_lock:
-        print(hex(id(shared_lock)))
         # generate a number between 0 and 1
         value = random()
         # block for a fraction of a second
