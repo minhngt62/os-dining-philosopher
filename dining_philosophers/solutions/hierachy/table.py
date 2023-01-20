@@ -19,7 +19,7 @@ class HierachyTable(Table):
                 forks[id % self.PHILOSOPHERS_ON_TABLE],
                 forks[(id + 1) % self.PHILOSOPHERS_ON_TABLE]
             )
-            philosopher = HierachyPhilosopher(id, neighbor_forks)
+            philosopher = HierachyPhilosopher(id, neighbor_forks, self.PHILOSOPHERS_ON_TABLE)
             philosophers.append(philosopher)
 
         return philosophers
