@@ -1,5 +1,5 @@
 from typing import List, Dict, Tuple, Any
-import threading
+from multiprocessing.synchronize import Semaphore
 
 from ..._states import PhilosopherState
 from ...philosophers import Philosopher, logger
@@ -8,11 +8,11 @@ from ...forks import Fork
 class ArbitratorPhilosopher(Philosopher):
     def __init__(
         self, 
-        id: int,
+        id_: int,
         forks: Tuple[Fork, Fork],
-        waiter: threading.Semaphore
+        waiter: Semaphore
         ):
-        super().__init__(id, forks)
+        super().__init__(id_, forks)
         self.waiter = waiter
     
     def eat(self):
