@@ -1,5 +1,6 @@
 from typing import List, Dict, Tuple, Any
 from abc import ABC, abstractmethod
+import multiprocessing
 
 from .forks import Fork
 from .philosophers import Philosopher, logger
@@ -10,19 +11,28 @@ class Table(ABC):
     '''
     PHILOSOPHERS_ON_TABLE: int = 5
 
+    def __init__(self):
+        self.manager = multiprocessing.Manager()
+
     def start_dining(self):
-        logger.info(
-            f'Starting the dinner with {self.PHILOSOPHERS_ON_TABLE:02} philosophers'
-        )
-        forks = self._serve_forks()
-        philosophers = self._invite_philosophers(forks)
-        for philosopher in philosophers:
-            philosopher.start()
+        with self.manager:
+            logger.info(
+                f'Starting the dinner with {self.PHILOSOPHERS_ON_TABLE:02} philosophers'
+            )
+            forks = self._serve_forks()
+            self._philosophers = self._invite_philosophers(forks)
+            
+            for philosopher in self._philosophers:
+                philosopher.start()
+            for philosopher in self._philosophers:
+                philosopher.join() 
 
     @abstractmethod
     def _serve_forks(self) -> List[Fork]:
         '''
-        Invoke forks and return a list of them (<= PHILOSOPHERS_ON_TABLE).
+        If inheriting Fork, please register yours first (REF: forks.py).
+        Invoke forks (THROUGH self.manager - REF: arbitrator/table.py).
+        Return a list of them (<= PHILOSOPHERS_ON_TABLE).
         '''
         pass
     

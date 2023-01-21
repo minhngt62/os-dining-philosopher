@@ -1,3 +1,4 @@
+import time
 from dining_philosophers import ArbitratorTable, HierachyTable
 
 
@@ -8,4 +9,7 @@ def main():
 
 
 if __name__ == "__main__":
+    start = time.time()
     main()
+    end = time.time()
+    print("-" * 5, f"{end - start:.4f}s", "-" * 5)
