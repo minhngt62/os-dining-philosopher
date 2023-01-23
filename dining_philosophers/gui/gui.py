@@ -14,6 +14,9 @@ class GUI():
         window.configure(bg=bg)
 
         self.window = window
+        
+        from .events import EventHandler
+        self.event_handler = EventHandler(self)
     
     def default_build(self):
         self.create_canvas()

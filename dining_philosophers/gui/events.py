@@ -1,34 +1,18 @@
-from tkinter import *
+import tkinter as tk
 
-# --- functions ---
+from .gui import GUI
+from ..solutions import *
+from ..table import Table
 
-def create_frame(master):
-    print("create frame")
+class EventHandler:
+    TABLES = [ArbitratorTable]
 
-    frame = Frame(master)
+    def __init__(self, gui: GUI):
+        self.gui = gui
 
-    b = Button(frame, text='Do Something')
-    b.pack(pady=10)
-
-    clearall = Button(frame, text='reset', command=reset_all)
-    clearall.pack(pady=10)
-
-    return frame
-
-def reset_all():
-    global frame
-
-    frame.destroy()
-    frame = create_frame(master)
-    #frame = create_different_frame(master)
-    frame.pack()
-
-# --- main ---
-
-
-master = Tk()
-
-frame = create_frame(master)
-frame.pack()
-
-mainloop()
+    def method_selection(self):
+        for btn in self.gui._btns:
+            pass
+    
+    def _reset_kernel(self, table: Table):
+        pass
