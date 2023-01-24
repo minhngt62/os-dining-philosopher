@@ -1,5 +1,6 @@
 from pathlib import Path
 import tkinter as tk
+from typing import List, Any
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets")
@@ -25,6 +26,8 @@ class GUI():
         self.create_terminal()
         self.create_btns()
         self.place_notations()
+
+        self.event_handler.btn_select_method()
 
         self.window.resizable(False, False)
         self.window.mainloop()
@@ -72,7 +75,7 @@ class GUI():
         btn_w, btn_h = 136.21359252929688, 34.0
         btn_coors = [(902.2621459960938, 88), (1048.5242919921875, 88.0), (1194.786376953125, 88.0), (756.0, 88)]
         self._btn_imgs = [tk.PhotoImage(file=rel(f"button_{i+1}.png")) for i in range(len(btn_coors))]
-        self._btns = []
+        self._btns: List[tk.Button] = []
         for i in range(len(btn_coors)):
             btn = tk.Button(
                 image=self._btn_imgs[i],
