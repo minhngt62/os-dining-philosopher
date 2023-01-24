@@ -1,8 +1,8 @@
 import time
-from dining_philosophers import ArbitratorTable
+from dining_philosophers import ArbitratorTable,CMTable
 
 def main():
-    dining_table = ArbitratorTable()
+    dining_table = CMTable()
     dining_table.start_dining()
 
 if __name__ == "__main__":
