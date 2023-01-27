@@ -1,2 +1,2 @@
-from .solutions import ArbitratorTable
+from .solutions import ArbitratorTable, LimitDiners
 from .gui import GUI
