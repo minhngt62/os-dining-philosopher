@@ -1,13 +1,15 @@
 import time
-from dining_philosophers import ArbitratorTable, HierachyTable, CMTable
+
+from dining_philosophers import ArbitratorTable, HierachyTable, CMTable, LimitDiners
 
 
 def main():
+    # dining_table = LimitDiners()
     # dining_table = ArbitratorTable()
     dining_table = HierachyTable()
     # dining_table = CMTable()
+    
     dining_table.start_dining()
-
 
 if __name__ == "__main__":
     start = time.time()
