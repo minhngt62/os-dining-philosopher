@@ -30,4 +30,4 @@ class HierachyPhilosopher(Philosopher):
         self.forks[1].release()
 
     def shouldTakeLeftForkFirst(self):
-        return (self.id + 1) == self.numPhilosopher
+        return (self.id_ + 1) == self.numPhilosopher
