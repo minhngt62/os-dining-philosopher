@@ -2,12 +2,11 @@ from ...table import Table
 from ...forks import Fork
 from .philosophers import HierachyPhilosopher
 from typing import List, Tuple, Dict, Any
-import threading
 
 
 class HierachyTable(Table):
     def _serve_forks(self) -> List[Fork]:
-        return [Fork(i) for i in range(self.PHILOSOPHERS_ON_TABLE)]
+        return [self.manager.Fork(i) for i in range(self.PHILOSOPHERS_ON_TABLE)]
 
     def _invite_philosophers(
             self,

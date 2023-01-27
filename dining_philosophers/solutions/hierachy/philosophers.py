@@ -1,5 +1,4 @@
 from typing import List, Tuple, Dict, Any
-import threading
 
 from ..._states import PhilosopherState
 from ...philosophers import Philosopher, logger
