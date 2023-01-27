@@ -7,11 +7,13 @@ from ...philosophers import Philosopher, logger
 from .philosophers import CMPhilosopher
 
 class CMTable(Table):
+    def __init__(self):
+        super().__init__()
 
-    def _serve_forks(self):
+    def _serve_forks(self) -> List[CMFork]:
         return [self.manager.CMFork(i) for i in range(self.PHILOSOPHERS_ON_TABLE)]
 
-    def _invite_philosophers(self, forks):
+    def _invite_philosophers(self, forks: List[CMFork]):
         philosophers = []
 
         for philosopher_number in range(self.PHILOSOPHERS_ON_TABLE):
@@ -23,8 +25,8 @@ class CMTable(Table):
 
             # Giving ownership to forks if no one is the owner
             for fork in neighbor_forks:
-                if fork.getOwner() is None:
-                    fork.setOwner(philosopher.id_)
+                if fork.get_owner_id() is None:
+                    fork.set_owner_id(philosopher.id_)
             philosophers.append(philosopher)
 
         return philosophers

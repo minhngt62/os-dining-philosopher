@@ -5,6 +5,6 @@ class ForkState(Enum):
     CLEAN = auto()
 
 class PhilosopherState(Enum):
-    EATING = "I'm eating."
-    HUNGRY = "I'm hungry."
-    THINKING = "I'm thinking."
+    EATING = "eating"
+    HUNGRY = "hungry"
+    THINKING = "thinking"

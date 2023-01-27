@@ -1,5 +1,5 @@
 from .arbitrator import ArbitratorTable
-from .limitdiners import LimitDiners
+from .limitting import LimitTable
 from .hierachy import HierachyTable
-from .CM import CMTable
+from .chandy_misra import CMTable
 

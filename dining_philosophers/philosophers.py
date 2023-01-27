@@ -28,9 +28,9 @@ class Philosopher(multiprocessing.Process):
     
     def run(self):
         while self._full < self.EAT_TIMES_UNTIL_FULL:
-            self.eat()
             self.think()
-        logger.info("{:<13}".format(str(self)) + f" I'm full.")
+            self.eat()
+        logger.info("{:<13}".format(str(self)) + f" full")
         return
 
     def eat(self):

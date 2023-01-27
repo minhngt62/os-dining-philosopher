@@ -8,7 +8,8 @@ class CMPhilosopher(Philosopher):
     def __init__(
         self, 
         id_: int,
-        forks: Tuple[Fork, Fork]):
+        forks: Tuple[Fork, Fork]
+        ):
         super().__init__(id_, forks)
     
     def eat(self):
@@ -16,6 +17,7 @@ class CMPhilosopher(Philosopher):
             fork.request(self.id_)
 
         super().eat()
-        logger.info("Philosopher %d finish eating" % (self.id_))
+        
+        #logger.info("Philosopher %d finish eating" % (self.id_))
         for fork in self.forks:
             fork.finish()

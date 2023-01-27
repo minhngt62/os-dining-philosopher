@@ -10,23 +10,21 @@ class LimitPhilosopher(Philosopher):
         self, 
         id_: int,
         forks: Tuple[Fork, Fork],
-        waiter_to_sit: Semaphore
+        room: Semaphore
         ):
         super().__init__(id_, forks)
-        self.waiter_to_sit = waiter_to_sit
+        self.room = room
     
     def eat(self):
         self.state = PhilosopherState.HUNGRY
         logger.info("{:<13}".format(str(self)) + f" {self.state.value}")
         
-        self.waiter_to_sit.acquire()
+        self.room.acquire()
         self.forks[0].acquire()
         self.forks[1].acquire()
-        
 
         super().eat()
 
         self.forks[0].release()
         self.forks[1].release()
-        
-        self.waiter_to_sit.release()
+        self.room.release()

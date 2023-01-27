@@ -17,7 +17,7 @@ class HierachyPhilosopher(Philosopher):
         self.state = PhilosopherState.HUNGRY
         logger.info("{:<13}".format(str(self)) + f" {self.state.value}")
 
-        if self.shouldTakeLeftForkFirst():
+        if self.left_fork_first():
             self.forks[0].acquire()
             self.forks[1].acquire()
         else:
@@ -29,5 +29,5 @@ class HierachyPhilosopher(Philosopher):
         self.forks[0].release()
         self.forks[1].release()
 
-    def shouldTakeLeftForkFirst(self):
+    def left_fork_first(self):
         return (self.id_ + 1) == self.numPhilosopher

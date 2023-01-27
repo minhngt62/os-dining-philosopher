@@ -1,13 +1,13 @@
 import time
 
-from dining_philosophers import ArbitratorTable, HierachyTable, CMTable, LimitDiners
+from dining_philosophers import ArbitratorTable, HierachyTable, CMTable, LimitTable
 
 
 def main():
-    # dining_table = LimitDiners()
-    # dining_table = ArbitratorTable()
-    dining_table = HierachyTable()
-    # dining_table = CMTable()
+    #dining_table = LimitTable()
+    #dining_table = ArbitratorTable()
+    #dining_table = HierachyTable()
+    dining_table = CMTable()
     
     dining_table.start_dining()
 

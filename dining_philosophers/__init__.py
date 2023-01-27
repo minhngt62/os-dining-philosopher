@@ -1,3 +1,3 @@
-from .solutions import ArbitratorTable, HierachyTable, CMTable, LimitDiners
+from .solutions import ArbitratorTable, HierachyTable, CMTable, LimitTable
 from .gui import GUI
 
