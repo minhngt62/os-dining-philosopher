@@ -8,7 +8,7 @@ from ..table import Table
 from .._states import PhilosopherState
 
 class EventHandler:
-    TABLES = [ArbitratorTable]
+    TABLES = [ArbitratorTable, CMTable, HierachyTable, LimitTable]
     STATE_IMG = {
         PhilosopherState.THINKING: tk.PhotoImage(file=rel("philosopher_thinking.png")),
         PhilosopherState.EATING: tk.PhotoImage(file=rel("philosopher_eating.png")),
@@ -28,12 +28,11 @@ class EventHandler:
 
     def _reset_kernel(self, table: Table):
         self.gui._canvas.delete("All")
-        self.kernel = table
+        self.kernel = table(self)
         self.gui.default_build()
 
     def _start_dining(self):
-        dining_table = ArbitratorTable(self)
-        dining_table.start_dining()
+        self.kernel.start_dining()
 
     def _animate_dining(self, dining_table: Table):
         stop = False
