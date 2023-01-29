@@ -22,14 +22,14 @@ class Table(ABC):
                 f'Starting the dinner with {self.PHILOSOPHERS_ON_TABLE:02} philosophers'
             )
             forks = self._serve_forks()
-            states = self._create_state()
+            states = self._init_states()
             self._philosophers = self._invite_philosophers(states, forks)
             for philosopher in self._philosophers:
                 philosopher.start()
             self.event._animate_dining(self)
 
-    def _create_state(self):
-        return [self.manager.Value(int, 0) for i in range(self.PHILOSOPHERS_ON_TABLE)]
+    def _init_states(self):
+        return [self.manager.Value(PhilosopherState, PhilosopherState.THINKING) for i in range(self.PHILOSOPHERS_ON_TABLE)]
 
     @abstractmethod
     def _serve_forks(self) -> List[Fork]:

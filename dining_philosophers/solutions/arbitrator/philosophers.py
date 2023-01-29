@@ -17,9 +17,8 @@ class ArbitratorPhilosopher(Philosopher):
         self.waiter = waiter
     
     def eat(self):
-        self.state = PhilosopherState.HUNGRY
-        self.value.value = 2
-        logger.info("{:<13}".format(str(self)) + f" {self.state.value}")
+        self.state.value = PhilosopherState.HUNGRY
+        logger.info("{:<13}".format(str(self)) + f" {self.state.value.value}")
         
         self.waiter.acquire()
         self.forks[0].acquire()
