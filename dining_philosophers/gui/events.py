@@ -9,15 +9,15 @@ from .._states import PhilosopherState
 
 class EventHandler:
     TABLES = [ArbitratorTable]
-    STATE_IMG = {
-        PhilosopherState.THINKING: tk.PhotoImage(file=rel("philosopher_thinking.png")),
-        PhilosopherState.EATING: tk.PhotoImage(file=rel("philosopher_eating.png")),
-        PhilosopherState.HUNGRY: tk.PhotoImage(file=rel("philosopher_hungry.png"))
-        }
+    STATE_IMG = [
+        tk.PhotoImage(file=rel("philosopher_thinking.png")),
+        tk.PhotoImage(file=rel("philosopher_eating.png")),
+        tk.PhotoImage(file=rel("philosopher_hungry.png"))
+    ]
 
     def __init__(self, gui: GUI):
         self.gui = gui
-        self.kernel: Table = ArbitratorTable()
+        self.kernel: Table = ArbitratorTable(self)
 
     def btn_select_method(self):
         for i in range(len(self.TABLES)):
@@ -32,10 +32,8 @@ class EventHandler:
         self.gui.default_build()
 
     def _start_dining(self):
-        dining_table = ArbitratorTable()
+        dining_table = ArbitratorTable(self)
         dining_table.start_dining()
-
-        self._animate_dining(dining_table)
 
     def _animate_dining(self, dining_table: Table):
         stop = False
@@ -45,7 +43,7 @@ class EventHandler:
                 if philosopher.is_alive():
                     self.gui._canvas.itemconfig(
                         self.gui._philosophers[philosopher.id_], 
-                        image=self.STATE_IMG[philosopher.state]
+                        image=self.STATE_IMG[philosopher.value.value]
                         )
                     self.gui.window.update()
                 all_alive = all_alive or philosopher.is_alive()

@@ -17,6 +17,7 @@ class Philosopher(multiprocessing.Process):
     def __init__(
         self, 
         id_: int,
+        value,
         forks: Tuple[Fork, Fork],
         ):
         multiprocessing.Process.__init__(self)
@@ -25,6 +26,7 @@ class Philosopher(multiprocessing.Process):
         self.state = PhilosopherState.THINKING
         self.forks = forks
         self._full = 0
+        self.value = value
     
     def run(self):
         while self._full < self.EAT_TIMES_UNTIL_FULL:
@@ -38,12 +40,14 @@ class Philosopher(multiprocessing.Process):
         # PROCESS SYNCH HERE
         
         self.state = PhilosopherState.EATING
+        self.value.value = 1
         self._full += 1
         logger.info("{:<13}".format(str(self)) + f" {self.state.value}" + f" ({self._full})")
         time.sleep(uniform(1.2, 5.0))
 
     def think(self):
         self.state = PhilosopherState.THINKING
+        self.value.value = 0
         logger.info("{:<13}".format(str(self)) + f" {self.state.value}")
         time.sleep(uniform(1.2, 5.0))
 

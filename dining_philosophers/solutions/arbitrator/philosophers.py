@@ -9,14 +9,16 @@ class ArbitratorPhilosopher(Philosopher):
     def __init__(
         self, 
         id_: int,
+        state,
         forks: Tuple[Fork, Fork],
         waiter: Semaphore
         ):
-        super().__init__(id_, forks)
+        super().__init__(id_, state, forks)
         self.waiter = waiter
     
     def eat(self):
         self.state = PhilosopherState.HUNGRY
+        self.value.value = 2
         logger.info("{:<13}".format(str(self)) + f" {self.state.value}")
         
         self.waiter.acquire()
