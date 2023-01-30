@@ -4,6 +4,7 @@ import multiprocessing
 
 from .forks import Fork
 from .philosophers import Philosopher, logger
+from ._states import PhilosopherState
 
 class Table(ABC):
     '''
@@ -11,8 +12,9 @@ class Table(ABC):
     '''
     PHILOSOPHERS_ON_TABLE: int = 5
 
-    def __init__(self):
+    def __init__(self, event):
         self.manager = multiprocessing.Manager()
+        self.event = event
 
     def start_dining(self):
         with self.manager:
@@ -20,12 +22,14 @@ class Table(ABC):
                 f'Starting the dinner with {self.PHILOSOPHERS_ON_TABLE:02} philosophers'
             )
             forks = self._serve_forks()
-            self._philosophers = self._invite_philosophers(forks)
-            
+            states = self._init_states()
+            self._philosophers = self._invite_philosophers(states, forks)
             for philosopher in self._philosophers:
                 philosopher.start()
-            for philosopher in self._philosophers:
-                philosopher.join() 
+            self.event._animate_dining(self)
+
+    def _init_states(self):
+        return [self.manager.Value(PhilosopherState, PhilosopherState.THINKING) for i in range(self.PHILOSOPHERS_ON_TABLE)]
 
     @abstractmethod
     def _serve_forks(self) -> List[Fork]:
@@ -39,6 +43,7 @@ class Table(ABC):
     @abstractmethod
     def _invite_philosophers(
         self, 
+        states,
         forks: List[Fork],
         ) -> List[Philosopher]:
         '''

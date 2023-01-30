@@ -17,12 +17,13 @@ class Philosopher(multiprocessing.Process):
     def __init__(
         self, 
         id_: int,
+        state,
         forks: Tuple[Fork, Fork],
         ):
         multiprocessing.Process.__init__(self)
         
         self.id_ = id_
-        self.state = PhilosopherState.THINKING
+        self.state = state
         self.forks = forks
         self._full = 0
     
@@ -37,14 +38,14 @@ class Philosopher(multiprocessing.Process):
         # Set hungry state here
         # PROCESS SYNCH HERE
         
-        self.state = PhilosopherState.EATING
+        self.state.value = PhilosopherState.EATING
         self._full += 1
-        logger.info("{:<13}".format(str(self)) + f" {self.state.value}" + f" ({self._full})")
+        logger.info("{:<13}".format(str(self)) + f" {self.state.value.value}" + f" ({self._full})")
         time.sleep(uniform(1.2, 5.0))
 
     def think(self):
-        self.state = PhilosopherState.THINKING
-        logger.info("{:<13}".format(str(self)) + f" {self.state.value}")
+        self.state.value = PhilosopherState.THINKING
+        logger.info("{:<13}".format(str(self)) + f" {self.state.value.value}")
         time.sleep(uniform(1.2, 5.0))
 
     def __repr__(self) -> str:

@@ -24,10 +24,9 @@ class GUI():
         self.place_table()
         self.place_philosophers()
         self.create_terminal()
+        self.create_btn_start()
         self.create_btns()
         self.place_notations()
-
-        self.event_handler.btn_select_method()
 
         self.window.resizable(False, False)
         self.window.mainloop()
@@ -50,7 +49,7 @@ class GUI():
 
     def place_philosophers(self, bg="philosopher.png"):
         self._philosopher_img = tk.PhotoImage(file=rel(bg))
-        phil_coors = [(596, 635), (259, 725), (101, 467), (596, 252), (259, 174)]
+        phil_coors = [(596, 635), (596, 252), (259, 174), (101, 467), (259, 725)]
         self._philosophers = []
         for i in range(len(phil_coors)):
             philosopher = self._canvas.create_image(
@@ -70,10 +69,28 @@ class GUI():
             fill="#000000",
             font=("Inter", 12 * -1)
         )
+
+    def create_btn_start(self, bg="start.png"):
+        self._btn_start_img = tk.PhotoImage(file=rel(bg))
+        self._btn_start = tk.Button(
+            image=self._btn_start_img,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: None,
+            relief="flat"
+        )
+        self._btn_start.place(
+            x=1179.0,
+            y=144.0,
+            width=136.213623046875,
+            height=34.0
+        )
+
+        self.event_handler.btn_start()
     
     def create_btns(self):
         btn_w, btn_h = 136.21359252929688, 34.0
-        btn_coors = [(902.2621459960938, 88), (1048.5242919921875, 88.0), (1194.786376953125, 88.0), (756.0, 88)]
+        btn_coors = [(756.0, 88), (902.2621459960938, 88), (1048.5242919921875, 88.0), (1194.786376953125, 88.0)]
         self._btn_imgs = [tk.PhotoImage(file=rel(f"button_{i+1}.png")) for i in range(len(btn_coors))]
         self._btns: List[tk.Button] = []
         for i in range(len(btn_coors)):
@@ -91,6 +108,8 @@ class GUI():
                 height=btn_h
             )
             self._btns.append(btn)
+        
+        self.event_handler.btn_select_method()
     
     def place_notations(self):
         self._canvas.create_rectangle(841.0, 823.0, 861.0, 843.0, fill="#EE4537", outline="")

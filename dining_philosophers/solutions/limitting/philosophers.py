@@ -9,15 +9,16 @@ class LimitPhilosopher(Philosopher):
     def __init__(
         self, 
         id_: int,
+        state,
         forks: Tuple[Fork, Fork],
         room: Semaphore
         ):
-        super().__init__(id_, forks)
+        super().__init__(id_, state, forks)
         self.room = room
     
     def eat(self):
-        self.state = PhilosopherState.HUNGRY
-        logger.info("{:<13}".format(str(self)) + f" {self.state.value}")
+        self.state.value = PhilosopherState.HUNGRY
+        logger.info("{:<13}".format(str(self)) + f" {self.state.value.value}")
         
         self.room.acquire()
         self.forks[0].acquire()
