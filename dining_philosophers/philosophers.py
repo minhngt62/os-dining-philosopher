@@ -12,7 +12,7 @@ from ._states import PhilosopherState
 from .forks import Fork
 
 class Philosopher(multiprocessing.Process):
-    EAT_TIMES_UNTIL_FULL = 3
+    EAT_TIMES_UNTIL_FULL = 10
 
     def __init__(
         self, 

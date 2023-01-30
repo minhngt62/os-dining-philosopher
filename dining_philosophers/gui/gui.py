@@ -60,14 +60,15 @@ class GUI():
             self._philosophers.append(philosopher)
     
     def create_terminal(self, logo="thread.png"):
-        self._canvas.create_rectangle(756.0, 122.0, 1331.0, 808.0, fill="#FFFDFD", outline="")
+        self._canvas.create_rectangle(756.0, 127.0, 1331.0, 808.0, fill="#FFFDFD", outline="black")
 
         self._thread_img = tk.PhotoImage(file=rel(logo))
         self._thread = self._canvas.create_image(834.0, 161.0, image=self._thread_img)
         self._logging = self._canvas.create_text(790.0, 200.0,
             anchor="nw",
+            text="[TEST-TEXT]",
             fill="#000000",
-            font=("Inter", 12 * -1)
+            font=("JetBrains Mono", 12 * -1)
         )
 
     def create_btn_start(self, bg="start.png"):
@@ -112,7 +113,7 @@ class GUI():
         self.event_handler.btn_select_method()
     
     def place_notations(self):
-        self._canvas.create_rectangle(841.0, 823.0, 861.0, 843.0, fill="#EE4537", outline="")
+        self._canvas.create_rectangle(841.0, 823.0, 861.0, 843.0, fill="#FF0000", outline="")
         self._canvas.create_text(865.0, 821.0,
             anchor="nw",
             text="HUNGRY",
@@ -120,7 +121,7 @@ class GUI():
             font=("Lato Bold", 20 * -1)
         )
 
-        self._canvas.create_rectangle(1151.0, 823.0, 1171.0, 843.0, fill="#B7AC44", outline="")
+        self._canvas.create_rectangle(1151.0, 823.0, 1171.0, 843.0, fill="#00FF00", outline="")
         self._canvas.create_text(1175.0, 821.0,
             anchor="nw",
             text="EATING",
@@ -128,7 +129,7 @@ class GUI():
             font=("Lato Bold", 20 * -1)
         )
 
-        self._canvas.create_rectangle(989.0, 823.0, 1009.0, 843.0, fill="#FFC300", outline="")
+        self._canvas.create_rectangle(989.0, 823.0, 1009.0, 843.0, fill="#0000FF", outline="")
         self._canvas.create_text(1013.0, 821.0,
             anchor="nw",
             text="THINKING",
