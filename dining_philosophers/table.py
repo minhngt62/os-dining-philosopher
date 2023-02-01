@@ -3,8 +3,9 @@ from abc import ABC, abstractmethod
 import multiprocessing
 
 from .forks import Fork
-from .philosophers import Philosopher, logger
+from .philosophers import Philosopher
 from ._states import PhilosopherState
+from .utils import logger
 
 class Table(ABC):
     '''

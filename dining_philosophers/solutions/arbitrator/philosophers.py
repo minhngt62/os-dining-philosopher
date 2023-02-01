@@ -2,8 +2,9 @@ from typing import List, Dict, Tuple, Any
 from multiprocessing.synchronize import Semaphore
 
 from ..._states import PhilosopherState
-from ...philosophers import Philosopher, logger
+from ...philosophers import Philosopher
 from ...forks import Fork
+from ...utils import logger
 
 class ArbitratorPhilosopher(Philosopher):
     def __init__(

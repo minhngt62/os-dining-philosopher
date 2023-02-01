@@ -4,15 +4,13 @@ from random import uniform
 import time
 from typing import List, Dict, Tuple, Any
 
-from .utils import config_logging
-config_logging("dining_philosophers\\utils\\config.yaml")
-logger = logging.getLogger(__name__)
+from .utils import logger
 
 from ._states import PhilosopherState
 from .forks import Fork
 
 class Philosopher(multiprocessing.Process):
-    EAT_TIMES_UNTIL_FULL = 10
+    EAT_TIMES_UNTIL_FULL = 3
 
     def __init__(
         self, 

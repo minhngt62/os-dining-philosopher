@@ -1,8 +1,9 @@
 from typing import List, Tuple, Dict, Any
 
 from ..._states import PhilosopherState
-from ...philosophers import Philosopher, logger
+from ...philosophers import Philosopher
 from ...forks import Fork
+from ...utils import logger
 
 class HierachyPhilosopher(Philosopher):
     def __init__(

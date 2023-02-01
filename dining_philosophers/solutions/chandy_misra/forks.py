@@ -6,7 +6,7 @@ from multiprocessing.managers import SyncManager
 from typing import Optional
 
 from ..._states import PhilosopherState, ForkState
-from ...philosophers import logger
+from ...utils import logger
 from .philosophers import CMPhilosopher
 from ...forks import Fork
 

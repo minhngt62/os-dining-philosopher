@@ -3,7 +3,7 @@ import multiprocessing
 
 from ...table import Table
 from .forks import CMFork
-from ...philosophers import Philosopher, logger
+from ...philosophers import Philosopher
 from .philosophers import CMPhilosopher
 
 class CMTable(Table):
