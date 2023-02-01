@@ -1,6 +1,7 @@
 from pathlib import Path
 import tkinter as tk
 from typing import List, Any
+from tkinter.scrolledtext import ScrolledText
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path(r"assets")
@@ -64,11 +65,12 @@ class GUI():
 
         self._thread_img = tk.PhotoImage(file=rel(logo))
         self._thread = self._canvas.create_image(834.0, 161.0, image=self._thread_img)
-        self._logging = self._canvas.create_text(790.0, 200.0,
-            anchor="nw",
-            text="[TEST-TEXT]",
-            fill="#000000",
-            font=("JetBrains Mono", 12 * -1)
+        self._logging = ScrolledText(self._canvas)
+        self._logging.place(
+            x=790, 
+            y=200,
+            width=507,
+            height=590
         )
 
     def create_btn_start(self, bg="start.png"):
