@@ -10,7 +10,7 @@ def rel(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
 class GUI():
-    def __init__(self, size: str = "1389x891", bg: str = "#FFFFFF"):
+    def __init__(self, size: str = "879x741", bg: str = "#FFFFFF"):
         window = tk.Tk()
         window.geometry(size)
         window.configure(bg=bg)
@@ -36,8 +36,8 @@ class GUI():
         self._canvas = tk.Canvas(
             self.window,
             bg = "#FFFFFF",
-            height = 891,
-            width = 1389,
+            height = 741,
+            width = 879,
             bd = 0,
             highlightthickness = 0,
             relief = "ridge"
@@ -46,11 +46,11 @@ class GUI():
     
     def place_table(self, bg="table.png"):
         self._table_img = tk.PhotoImage(file=rel(bg))
-        self._table = self._canvas.create_image(369, 454, image=self._table_img)
+        self._table = self._canvas.create_image(333, 374, image=self._table_img)
 
     def place_philosophers(self, bg="philosopher.png"):
         self._philosopher_img = tk.PhotoImage(file=rel(bg))
-        phil_coors = [(596, 635), (596, 252), (259, 174), (101, 467), (259, 725)]
+        phil_coors = [(560, 555), (551, 168), (223, 94), (65, 387), (223, 645)]
         self._philosophers = []
         for i in range(len(phil_coors)):
             philosopher = self._canvas.create_image(
@@ -61,17 +61,10 @@ class GUI():
             self._philosophers.append(philosopher)
     
     def create_terminal(self, logo="thread.png"):
-        self._canvas.create_rectangle(756.0, 127.0, 1331.0, 808.0, fill="#FFFDFD", outline="black")
+        self._canvas.create_rectangle(655.0, 147.0, 855.0, 475.0, fill="#FFFDFD", outline="black")
 
         self._thread_img = tk.PhotoImage(file=rel(logo))
-        self._thread = self._canvas.create_image(834.0, 161.0, image=self._thread_img)
-        self._logging = ScrolledText(self._canvas)
-        self._logging.place(
-            x=790, 
-            y=200,
-            width=507,
-            height=590
-        )
+        self._thread = self._canvas.create_image(749.0, 176.0, image=self._thread_img)
 
     def create_btn_start(self, bg="start.png"):
         self._btn_start_img = tk.PhotoImage(file=rel(bg))
@@ -83,17 +76,17 @@ class GUI():
             relief="flat"
         )
         self._btn_start.place(
-            x=1179.0,
-            y=144.0,
-            width=136.213623046875,
-            height=34.0
+            x=668.0,
+            y=406.0,
+            width=173,
+            height=44.0
         )
 
         self.event_handler.btn_start()
     
     def create_btns(self):
-        btn_w, btn_h = 136.21359252929688, 34.0
-        btn_coors = [(756.0, 88), (902.2621459960938, 88), (1048.5242919921875, 88.0), (1194.786376953125, 88.0)]
+        btn_w, btn_h = 173.0, 48.6048583984375
+        btn_coors = [(668.0, 202.393310546875), (668, 348.2078857421875), (668, 250.9981689453125), (668, 299.60302734375)]
         self._btn_imgs = [tk.PhotoImage(file=rel(f"button_{i+1}.png")) for i in range(len(btn_coors))]
         self._btns: List[tk.Button] = []
         for i in range(len(btn_coors)):
@@ -115,24 +108,24 @@ class GUI():
         self.event_handler.btn_select_method()
     
     def place_notations(self):
-        self._canvas.create_rectangle(841.0, 823.0, 861.0, 843.0, fill="#FF0000", outline="")
-        self._canvas.create_text(865.0, 821.0,
+        self._canvas.create_rectangle(692.0, 497.0, 712.0, 517.0, fill="#FF0000", outline="")
+        self._canvas.create_text(716.0, 493.0,
             anchor="nw",
             text="HUNGRY",
             fill="#000000",
             font=("Lato Bold", 20 * -1)
         )
 
-        self._canvas.create_rectangle(1151.0, 823.0, 1171.0, 843.0, fill="#00FF00", outline="")
-        self._canvas.create_text(1175.0, 821.0,
+        self._canvas.create_rectangle(692.0, 569.0, 712.0, 589.0, fill="#00FF00", outline="")
+        self._canvas.create_text(716.0, 565.0,
             anchor="nw",
             text="EATING",
             fill="#000000",
             font=("Lato Bold", 20 * -1)
         )
 
-        self._canvas.create_rectangle(989.0, 823.0, 1009.0, 843.0, fill="#0000FF", outline="")
-        self._canvas.create_text(1013.0, 821.0,
+        self._canvas.create_rectangle(692.0, 533.0, 712.0, 553.0, fill="#0000FF", outline="")
+        self._canvas.create_text(716.0, 529.0,
             anchor="nw",
             text="THINKING",
             fill="#000000",
