@@ -12,7 +12,8 @@ class EventHandler:
     STATE_IMG = {
         PhilosopherState.THINKING: tk.PhotoImage(file=rel("philosopher_thinking.png")),
         PhilosopherState.EATING: tk.PhotoImage(file=rel("philosopher_eating.png")),
-        PhilosopherState.HUNGRY: tk.PhotoImage(file=rel("philosopher_hungry.png"))
+        PhilosopherState.HUNGRY: tk.PhotoImage(file=rel("philosopher_hungry.png")),
+        "default": tk.PhotoImage(file=rel("philosopher.png"))
     }
 
     def __init__(self, gui: GUI):
@@ -39,13 +40,19 @@ class EventHandler:
         while not stop:
             all_alive = False
             for philosopher in dining_table._philosophers:
-                if philosopher.is_alive():
+                cur_state = philosopher.is_alive()
+                if cur_state:
                     self.gui._canvas.itemconfig(
                         self.gui._philosophers[philosopher.id_], 
                         image=self.STATE_IMG[philosopher.state.value]
-                        )
-                    self.gui.window.update()
-                all_alive = all_alive or philosopher.is_alive()
+                    )
+                else:
+                    self.gui._canvas.itemconfig(
+                        self.gui._philosophers[philosopher.id_], 
+                        image=self.STATE_IMG["default"]
+                    )
+                self.gui.window.update()
+                all_alive = all_alive or cur_state
             stop = stop or not all_alive
 
                 
