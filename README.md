@@ -24,11 +24,11 @@ However, they each will think for an undetermined amount of time and may end up 
   <img src="https://user-images.githubusercontent.com/86721208/218491029-e246d361-4130-46b7-a5e0-7d65ca511303.jpg" />
 </p>
 
-## Operating Systems - DSAI K65: Topic 10
-1. Nguyễn Tống Minh (Email: minh.nt204885@sis.hust.edu.vn)
-2. Nguyễn Công Đạt (Email: dat.nc200137@sis.hust.edu.vn)
-3. Nguyễn Trung Hiếu (Email: hieu.nt204877@sis.hust.edu.vn)
-4. Ngô Thị Thu Huyền (Email: huyen.ntt200289@sis.hust.edu.vn)
+## Operating Systems
+1. Nguyễn Tống Minh
+2. Nguyễn Công Đạt
+3. Nguyễn Trung Hiếu
+4. Ngô Thị Thu Huyền
 
 ## Project Structure
 
